@@ -4,6 +4,7 @@ import { Text, View } from '@/components/Themed';
 import { gamesAPI, predictionsAPI, userAPI, Game, User } from '@/api';
 import { router } from 'expo-router';
 import type { CreatePredictionDto } from '@/api/types';
+import { useFocusEffect } from '@react-navigation/native';
 
 export default function GamesScreen() {
   const [games, setGames] = useState<Game[]>([]);
@@ -55,6 +56,13 @@ export default function GamesScreen() {
     fetchGames();
   }, [filter]);
 
+  // Auto-refresh when screen comes into focus
+  useFocusEffect(
+    React.useCallback(() => {
+      fetchGames();
+    }, [filter])
+  );
+
   const makePrediction = async (gameId: string, prediction: string) => {
     try {
       const predictionData: CreatePredictionDto = {
@@ -67,7 +75,7 @@ export default function GamesScreen() {
       await predictionsAPI.createPrediction(predictionData);
       Alert.alert('Success! 🎉', `Prediction submitted: ${prediction.toUpperCase()}`);
       
-      // Refresh games to show updated prediction status
+      // Refresh games and user data to show updated state
       await fetchGames();
     } catch (error) {
       console.error('Error making prediction:', error);

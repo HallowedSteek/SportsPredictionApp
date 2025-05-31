@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, ScrollView, RefreshControl, TouchableOpacity, Alert } from 'react-native';
 import { Text, View } from '@/components/Themed';
 import { userAPI, predictionsAPI, User, Prediction } from '@/api';
+import { useFocusEffect } from '@react-navigation/native';
 
 interface EnhancedUser extends User {
   virtualBalance: number;
@@ -89,6 +90,13 @@ export default function ProfileScreen() {
   useEffect(() => {
     fetchUserData();
   }, []);
+
+  // Auto-refresh when screen comes into focus
+  useFocusEffect(
+    React.useCallback(() => {
+      fetchUserData();
+    }, [])
+  );
 
   const filterPredictions = (predictions: EnhancedPrediction[], filter: string) => {
     if (filter === 'all') return predictions;

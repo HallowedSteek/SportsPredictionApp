@@ -4,6 +4,7 @@ import { Text, View } from '@/components/Themed';
 import { userAPI, predictionsAPI, gamesAPI, User, Prediction, Game } from '@/api';
 import { router } from 'expo-router';
 import { PieChart } from 'react-native-chart-kit';
+import { useFocusEffect } from '@react-navigation/native';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -44,6 +45,13 @@ export default function DashboardScreen() {
   useEffect(() => {
     fetchData();
   }, []);
+
+  // Auto-refresh when screen comes into focus
+  useFocusEffect(
+    React.useCallback(() => {
+      fetchData();
+    }, [])
+  );
 
   const getPerformanceData = () => {
     if (!user) {
