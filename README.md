@@ -256,33 +256,6 @@ SportsPredictionApp/
 └── demo-api-test.js     # Backend connectivity test
 ```
 
-## 🔮 Future Enhancements
-
-### Planned Features
-- **Real-time Updates**: WebSocket integration for live score updates
-- **User Authentication**: Login/signup with JWT tokens and AsyncStorage
-- **Push Notifications**: Game reminders and result notifications
-- **Social Features**: Leaderboards, friend predictions, sharing
-- **Advanced Analytics**: Detailed prediction statistics and trends
-- **Multiple Sports**: Expand beyond basketball to football, soccer, etc.
-- **Live Streaming**: Integration with sports streaming services
-- **Payment Integration**: Real money betting with payment gateways
-
-### Technical Improvements
-- **Offline Support**: Cache data for offline viewing
-- **Performance**: Optimize for large datasets with pagination
-- **Testing**: Comprehensive unit and integration tests
-- **CI/CD**: Automated testing and deployment pipelines
-- **Monitoring**: Error tracking and performance monitoring
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
 ## 📄 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
